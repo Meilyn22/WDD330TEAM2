@@ -7,6 +7,10 @@ function convertToJson(res) {
   }
 }
 
+function getLocalStorage(key) {
+  return JSON.parse(localStorage.getItem(key));
+}
+
 function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
@@ -27,7 +31,29 @@ function getProductsData() {
 // add to cart button event handler
 function addToCart(e) {
   const product = products.find((item) => item.Id === e.target.dataset.id);
-  setLocalStorage("so-cart", product);
+  const currentProducts = getLocalStorage("so-cart");
+
+  if (currentProducts) {
+    const existingProduct = currentProducts.find(
+      (item) => item.Id === product.Id
+    );
+
+    if (existingProduct) {
+      currentProducts.forEach((currentProduct) => {
+        if (currentProduct.Id == existingProduct.Id) {
+          currentProduct.Quantity++;
+        }
+      });
+    } else {
+      product.Quantity = 1; 
+      currentProducts.push(product);
+    }
+    setLocalStorage("so-cart", currentProducts);
+  } else {
+    product.Quantity = 1;
+    const cartItems = [product];
+    setLocalStorage("so-cart", cartItems);
+  }
 }
 
 getProductsData();

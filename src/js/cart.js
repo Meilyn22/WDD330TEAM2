@@ -3,10 +3,14 @@ function getLocalStorage(key) {
 }
 
 function getCartContents() {
-  let markup = "";
   const cartItems = getLocalStorage("so-cart");
-  const htmlItems = cartItems.map((item) => renderCartItem(item));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  // const htmlItems = cartItems((item) => renderCartItem(item));
+  let htmlItems = [];
+  cartItems.forEach((cartItem) => {
+    const htmlItem = renderCartItem(cartItem);
+    htmlItems.push(htmlItem);
+  })
+  document.querySelector(".product-list").innerHTML = htmlItems;
   // document.querySelector('.product-list').innerHTML = renderCartItem(cartItems);
 }
 
@@ -22,10 +26,10 @@ function renderCartItem(item) {
     <h2 class='card__name'>${item.Name}</h2>
   </a>
   <p class='cart-card__color'>${item.Colors[0].ColorName}</p>
-  <p class='cart-card__quantity'>qty: 1</p>
+  <p class='cart-card__quantity'>qty: ${item.Quantity}</p>
   <p class='cart-card__price'>$${item.FinalPrice}</p>
 </li>`;
-  console.log(newItem);
+  // console.log(newItem);
   return newItem;
 }
 

@@ -1,12 +1,7 @@
 https://trello.com/b/DZFpF00E/wdd-team2-task-board
 
-<<<<<<< HEAD
 Samson Idoko
 Guillen, Herick
-=======
-Samson Idoko,
-Guillen Herick
->>>>>>> 9ccae52c957cc4498cbfda531f98a0947a890e91
 Cox Rob
 Nyamuda Tatenda
 Netto, Jose Elias Cavalcanti
