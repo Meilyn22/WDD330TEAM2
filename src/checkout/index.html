@@ -17,27 +17,35 @@
             <legend>Shipping</legend>
             <div class="checkout__name">
               <label for="fname">First Name</label>
-              <input name="fname" required />
+              <input name="fname" required 
+              placeholder="John"/>
               <label for="lname">Last Name</label>
-              <input name="lname" required />
+              <input name="lname" required
+              placeholder="Doe" />
             </div>
             <div class="checkout__address">
               <label for="street">Street</label>
               <input name="street" required />
               <label for="city">City</label>
-              <input name="city" required />
+              <input name="city" required/>
               <label for="state">State</label>
               <input name="state" required />
               <label for="zip">Zip</label>
-              <input name="zip" id="zip" required />
+              <input name="zip" id="zip" required 
+              minlength="5"
+              maxlength="5"/>
             </div>
           </fieldset>
           <fieldset>
             <legend>Payment</legend>
             <label for="cardNumber">Card number</label>
-            <input name="cardNumber" required />
+            <input name="cardNumber" required 
+            placeholder="No spaces and no dashes"
+            minlength = '16'
+            maxlength= '16' />
             <label for="expiration">Expiration</label>
-            <input name="expiration" required />
+            <input name="expiration" required 
+            placeholder="mm/yy"/>
             <label for="code">Security Code</label>
             <input name="code" required />
           </fieldset>
