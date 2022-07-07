@@ -1,33 +1,32 @@
-import { setLocalStorage, getLocalStorage, loadHeaderFooter } from "./utils.js";
+import { setLocalStorage, getLocalStorage, loadHeaderFooter, alertMessage } from './utils.js';
+
 
 loadHeaderFooter();
 export default class ProductDetails {
-  constructor(productId, dataSource) {
+  constructor(productId, dataSource){
     this.productId = productId;
     this.product = {};
     this.dataSource = dataSource;
+    
   }
   async init() {
     this.product = await this.dataSource.findProductById(this.productId);
-    document.querySelector("main").innerHTML = this.renderProductDetails();
+    document.querySelector('main').innerHTML = this.renderProductDetails();
     // add listener to Add to Cart button
-    document
-      .getElementById("addToCart")
-      .addEventListener("click", this.addToCart.bind(this));
+    document.getElementById('addToCart')
+            .addEventListener('click', this.addToCart.bind(this));
   }
   addToCart() {
     // to fix the cart we need to get anything that is in the cart already.
-    let cartContents = getLocalStorage("so-cart");
-    console.log(this.product)
+    let cartContents = getLocalStorage('so-cart');
     //check to see if there was anything there
-    if (!cartContents) {
+    if(!cartContents){
       cartContents = [];
     }
     // then add the current product to the list
-    
     cartContents.push(this.product);
-    
-    setLocalStorage("so-cart", cartContents);
+    setLocalStorage('so-cart', cartContents);
+    alertMessage(`${this.product.NameWithoutBrand} added to cart!`)
   }
   renderProductDetails() {
     return `<section class="product-detail"> <h3>${this.product.Brand.Name}</h3>
@@ -46,4 +45,5 @@ export default class ProductDetails {
       <button id="addToCart" data-id="${this.product.Id}">Add to Cart</button>
     </div></section>`;
   }
+
 }
